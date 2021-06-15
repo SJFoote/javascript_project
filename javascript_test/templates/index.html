@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <!-- add sudoku extras here -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+<div id="holder">
+    <h1>Sudoku Solver</h1>
+    <!-- <button onclick="fillPuzzle(0)">button1</button>
+    <button onclick="fillPuzzle(1)">SudokuWiki Unsolveable #28</button>
+    <button onclick="clearPuzzle()">Clear</button> -->
+    <form action="/index/" method="get">
+        <table>
+            <style>
+                table { border-collapse: collapse; font-family: Calibri, sans-serif; }
+                colgroup, tbody { border: solid medium; }
+                td { border: solid thin; height: 1.4em; width: 1.4em; text-align: center; padding: 0; }
+                </style>
+            <caption>Sudoku of the day</caption>
+            <colgroup><col><col><col></colgroup>
+            <colgroup><col><col><col></colgroup>
+            <colgroup><col><col><col></colgroup>
+            <tbody>
+            <tr>{% for n in puzzle %}</tr>
+                {% for l in n %}
+                    {% if l == 0 %}
+                    <td><input type="text" maxlength="1" width="15"></td>
+
+                    {% else %}
+                <td>{{ l }}</td>
+                {% endif %}
+            
+        {% endfor %}
+        {% endfor %}
+        </table>
+            <table> <p>Example</p>
+                <tbody>
+                <tr> <td>2 <td>  <td>4 <td>  <td>3 <td>  <td>9 <td>  <td>8
+                <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+                <tr> <td>5 <td>  <td>  <td>9 <td>  <td>7 <td>  <td>  <td>1
+                <tbody>
+                <tr> <td>6 <td>  <td>  <td>  <td>5 <td>  <td>  <td>  <td>2
+                <tr> <td>  <td>  <td>  <td>  <td>7 <td>  <td>  <td>  <td>
+                <tr> <td>9 <td>  <td>  <td>8 <td>  <td>2 <td>  <td>  <td>5
+            </table>
+        <input id="solve" type="submit" value="Solve">
+    </form>
+    </div>
+</body>
+</html>
